@@ -2,22 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\BankUnit;
-use App\Http\Requests\OrderFormRequest;
-use App\OrderType;
-use App\Order;
-use DateTime;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
-class OrderController extends Controller
+class ObjectController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function create()
     {
         $order_type = OrderType::all();
@@ -60,36 +48,18 @@ class OrderController extends Controller
         return redirect('/');
     }
 
-    public function sign($id)
-    {
-        $order = Order::find($id);
-        $utils = new \App\Utils;
-
-        $order->order_type = $utils->getOrderType(3);
-        $order->isSigned = 1;
-
-        $order->save();
-    }
-
-    public function edit($id)
+    public function sign()
     {
 
     }
 
-    public function delete($id)
+    public function edit()
     {
-        $order = Order::find($id);
-        $utils = new \App\Utils;
 
-        $order->order_type = $utils->getOrderType(4);
-        $order->isDeleted = 1;
-
-        $order->save();
     }
 
-    public function view()
+    public function delete()
     {
-        $orders = Order::where('user_id', Auth::id())->get();
-        return view('layouts.orders.view', compact('orders'));
+
     }
 }

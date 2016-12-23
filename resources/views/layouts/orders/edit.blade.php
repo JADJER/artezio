@@ -10,7 +10,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">Регистрация новой заявки</div>
     <div class="panel-body">
-        <form id="form_order" class="form-horizontal" role="form" method="POST" action="{{ url('/edit/order') }}">
+        <form id="form_order" class="form-horizontal" role="form" method="POST" action="{{ url('/order/save') }}">
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-4">
@@ -298,13 +298,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="list-group">
-                        <a href="{{ url('/edit/object') }}" class="list-group-item active"><span class="badge">0/50</span>Добавить обьект собственности</a>
+                        <a href="{{ url('/object/create') }}" class="list-group-item active"><span class="badge">0/50</span>Добавить обьект собственности</a>
                         <div class="list-group-item">
                             <p class="list-group-item-text">
                                 Нет обьектов собственности
                             </p>
                         </div>
-                        <a href="{{ url('/edit/object') }}" class="list-group-item active"><span class="badge">0/50</span>Добавить обьект собственности</a>
+                        <a href="{{ url('/object/create') }}" class="list-group-item active"><span class="badge">0/50</span>Добавить обьект собственности</a>
                     </div>
                 </div>
             </div>

@@ -34,7 +34,7 @@
                                 </li>
                             @else
                                 <li>
-                                    <a href="{{ url('/orders/edit/new') }}" role="button" class="btn">Оставить заявку</a>
+                                    <a href="{{ url('/order/create') }}" role="button" class="btn">Оставить заявку</a>
                                 </li>
                             @endif
                                 <li class="dropdown">

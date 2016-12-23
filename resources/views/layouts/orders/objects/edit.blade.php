@@ -43,11 +43,10 @@
 
 @section('content')
     <div class="panel panel-default">
-        <div class="panel-heading">Регистрация новой заявки</div>
+        <div class="panel-heading">Добавление обьекта собственности</div>
         <div class="panel-body">
-            <form id="form_order" class="form-horizontal" role="form" method="POST" action="{{ url('/orders/create') }}">
+            <form id="form_order" class="form-horizontal" role="form" method="POST" action="{{ url('/orders/edit') }}">
                 {{ csrf_field() }}
-
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group{{ $errors->has('order_type') ? ' has-error' : '' }}">
@@ -336,7 +335,7 @@
             <div class="row">
                 <div class="col-md-offset-10 col-md-2">
                     <div class="form-group">
-                        <button id="singlebutton" form="form_order" name="singlebutton" class="btn btn-primary">Отправить</button>
+                        <button id="singlebutton" form="form_order" name="singlebutton" class="btn btn-primary">Сохранить</button>
                     </div>
                 </div>
             </div>

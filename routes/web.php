@@ -28,9 +28,14 @@ Route::get('/logout', 'ProfileController@logout');
 
 Route::get('/orders', ['middleware' => 'auth', 'uses' => 'OrderController@view']);
 
-Route::get('/orders/edit', ['middleware' => 'auth', 'uses' => 'OrderController@edit']);
-Route::get('/orders/edit/new', ['middleware' => 'auth', 'uses' => 'OrderController@create']);
-Route::post('/orders/edit', ['middleware' => 'auth', 'uses' => 'OrderController@save']);
+Route::get('/order/create', ['middleware' => 'auth', 'uses' => 'OrderController@create']);
+Route::post('/order/save', ['middleware' => 'auth', 'uses' => 'OrderController@save']);
+Route::get('/order/sign/{id}', ['middleware' => 'auth', 'uses' => 'OrderController@sign']);
+Route::get('/order/edit/{id}', ['middleware' => 'auth', 'uses' => 'OrderController@edit']);
+Route::get('/order/delete/{id}', ['middleware' => 'auth', 'uses' => 'OrderController@delete']);
 
-Route::get('/orders/edit/object', ['middleware' => 'auth', 'uses' => 'OrderController@create_obj']);
-Route::post('/orders/edit/object', ['middleware' => 'auth', 'uses' => 'OrderController@save_obj']);
+Route::get('/object/create', ['middleware' => 'auth', 'uses' => 'ObjectController@create']);
+Route::post('/object/save', ['middleware' => 'auth', 'uses' => 'ObjectController@save']);
+Route::get('/object/sign/{id}', ['middleware' => 'auth', 'uses' => 'ObjectController@sign']);
+Route::get('/object/edit/{id}', ['middleware' => 'auth', 'uses' => 'ObjectController@edit']);
+Route::get('/object/delete/{id}', ['middleware' => 'auth', 'uses' => 'ObjectController@delete']);
