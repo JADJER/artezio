@@ -18,11 +18,14 @@
         <table class="table table-bordered table-striped sortable">
             <thead>
             <tr>
-                <td>№ п/п </td>
+                <td>№ п/п</td>
                 <th data-defaultsign="_19">Номер заявки</th>
                 <th data-defaultsign="month">Дата заявки</th>
-                <th data-defaultsign="AZ">Статус ЭД </th>
-                <td>Тип заявки </td>
+                <th data-defaultsign="AZ">Статус ЭД</th>
+                <td>Тип заявки</td>
+                <td title="Подтисать">П</td>
+                <td title="Редактировать">Р</td>
+                <td title="Удалить">У</td>
             </tr>
             </thead>
             <tbody>
@@ -33,6 +36,9 @@
                     <td>{{ $order->order_date }}</td>
                     <td>{{ $order->order_status }}</td>
                     <td data-dateformat="DD-MM-YYYY">{{ $order->order_type }}</td>
+                    <td title="Подтисать"><button class="btn btn-success"@if($order->isSigned || $order->isDeleted) disabled @endif></button></td>
+                    <td title="Редактировать"><button class="btn btn-warning"@if($order->isSigned || $order->isDeleted) disabled @endif></button></td>
+                    <td title="Удалить"><button class="btn btn-danger"@if($order->isSigned || $order->isDeleted) disabled @endif></button></td>
                 </tr>
             @endforeach
             </tbody>
