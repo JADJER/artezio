@@ -9,6 +9,7 @@
 namespace app;
 
 use App\OrderType;
+use App\OrderStatus;
 
 class Utils
 {

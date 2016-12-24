@@ -26,7 +26,7 @@ class OrderController extends Controller
 
         $date = date('d-m-Y');
 
-        return view('layouts.orders.edit', compact('order_type', 'bank_units', 'order_no', 'date'));
+        return view('layouts.orders.create', compact('order_type', 'bank_units', 'order_no', 'date'));
     }
 
     /**
@@ -38,9 +38,11 @@ class OrderController extends Controller
         $order = new Order;
         $utils = new \App\Utils;
 
+        $order_no = Order::all()->count() + 1;
+
         $order->user_id = Auth::id();
         $order->order_type = $utils->getOrderType($request->input('order_type'));
-        $order->order_no = Order::all()->count() + 1;
+        $order->order_no = $order_no;
         $order->order_date = date('d-m-Y');
         $order->order_status = $utils->getOrderStatus($request->input('order_type'));
         $order->unit = $request->input('unit');
@@ -57,7 +59,7 @@ class OrderController extends Controller
         $order->swift = $request->input('swift');
         $order->bank_add_detail = $request->input('bank_add_detail');
         $order->save();
-        return redirect('/');
+        return redirect('/object/create/' . $order_no);
     }
 
     public function sign($id)

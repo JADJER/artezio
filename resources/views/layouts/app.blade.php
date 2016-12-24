@@ -73,8 +73,6 @@
         </div>
     </div>
 </div>
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 @yield('script')
 </body>
 </html>

@@ -4,6 +4,8 @@
 @endsection
 
 @section('script')
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 @endsection
 
 @section('content')
@@ -19,7 +21,7 @@
                             Тип заявки
                         </label>
                         <div class="col-md-6">
-                            <select id="order_type" title="Тип заявки, выбираемый при формировании ЭД" list="order_type_list" class="form-control" name="order_type" value="{{ old('order_type') }}" autofocus>
+                            <select id="order_type" title="Тип заявки, выбираемый при формировании ЭД" class="form-control" name="order_type" autofocus>
                                 <option disabled selected value> -- Выберите значение -- </option>
                                 @foreach($order_type as $ot)
                                     <option value="{{ $ot->id }}">{{ $ot->order_type }}</option>

@@ -34,7 +34,7 @@ Route::get('/order/sign/{id}', ['middleware' => 'auth', 'uses' => 'OrderControll
 Route::get('/order/edit/{id}', ['middleware' => 'auth', 'uses' => 'OrderController@edit']);
 Route::get('/order/delete/{id}', ['middleware' => 'auth', 'uses' => 'OrderController@delete']);
 
-Route::get('/object/create', ['middleware' => 'auth', 'uses' => 'ObjectController@create']);
+Route::get('/object/create/{id}', ['middleware' => 'auth', 'uses' => 'ObjectController@create']);
 Route::post('/object/save', ['middleware' => 'auth', 'uses' => 'ObjectController@save']);
 Route::get('/object/sign/{id}', ['middleware' => 'auth', 'uses' => 'ObjectController@sign']);
 Route::get('/object/edit/{id}', ['middleware' => 'auth', 'uses' => 'ObjectController@edit']);
