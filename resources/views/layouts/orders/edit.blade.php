@@ -337,7 +337,7 @@
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        <button id="singlebutton" form="form_order" formaction="{{ url('/order/sign/' . $order->id) }}" name="singlebutton" class="btn btn-primary">Подписать</button>
+                        <a id="singlebutton" href="{{ url('/order/sign/' . $order->id) }}" name="singlebutton" class="btn btn-primary">Подписать</a>
                     </div>
                 </div>
                 <div class="col-md-1"></div>
