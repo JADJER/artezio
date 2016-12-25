@@ -15,16 +15,8 @@ class ProfileController extends Controller
         $this->middleware('auth');
     }
 
-    public function dashboard() {
-
-    }
-
-    public function edit() {
-
-    }
-
     public function logout() {
-        Auth::logout();
+        if (Auth::check()) Auth::logout();
         return redirect('/');
     }
 

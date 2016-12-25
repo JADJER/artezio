@@ -16,27 +16,29 @@ class CreateCollectorServiceTable extends Migration
         Schema::create('collector_service', function (Blueprint $table) {
             $table->integer('id')->unique();
             $table->primary('id');
-            $table->string('serv');
+            $table->string('name');
+            $table->timestamps();
         });
         DB::table('collector_service')->insert([
             'id' => '1',
-            'serv' => 'Инкассация денежной наличности',
+            'name' => 'Инкассация денежной наличности',
+            'created_at' => ''
         ]);
         DB::table('collector_service')->insert([
             'id' => '2',
-            'serv' => 'Прием и зачисление/перечисление денежной наличности',
+            'name' => 'Прием и зачисление/перечисление денежной наличности',
         ]);
         DB::table('collector_service')->insert([
             'id' => '3',
-            'serv' => 'Доставка денежной наличности',
+            'name' => 'Доставка денежной наличности',
         ]);
         DB::table('collector_service')->insert([
             'id' => '4',
-            'serv' => 'Доставка банкнот/монет в обмен на банкноты/монеты другого номинала;',
+            'name' => 'Доставка банкнот/монет в обмен на банкноты/монеты другого номинала;',
         ]);
         DB::table('collector_service')->insert([
             'id' => '5',
-            'serv' => 'Внесение изменений в действующий договор',
+            'name' => 'Внесение изменений в действующий договор',
         ]);
     }
 

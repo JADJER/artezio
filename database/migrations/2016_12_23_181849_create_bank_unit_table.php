@@ -16,27 +16,28 @@ class CreateBankUnitTable extends Migration
         Schema::create('bank_unit', function (Blueprint $table) {
             $table->integer('id')->unique();
             $table->primary('id');
-            $table->string('unit');
+            $table->string('name');
+            $table->timestamps();
         });
         DB::table('bank_unit')->insert([
             'id' => '1',
-            'unit' => 'Подразделение 1',
+            'name' => 'Подразделение 1',
         ]);
         DB::table('bank_unit')->insert([
             'id' => '2',
-            'unit' => 'Подразделение 2',
+            'name' => 'Подразделение 2',
         ]);
         DB::table('bank_unit')->insert([
             'id' => '3',
-            'unit' => 'Подразделение 3',
+            'name' => 'Подразделение 3',
         ]);
         DB::table('bank_unit')->insert([
             'id' => '4',
-            'unit' => 'Подразделение 4',
+            'name' => 'Подразделение 4',
         ]);
         DB::table('bank_unit')->insert([
             'id' => '5',
-            'unit' => 'Подразделение 5',
+            'name' => 'Подразделение 5',
         ]);
     }
 

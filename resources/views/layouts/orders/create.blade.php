@@ -22,9 +22,9 @@
                             </label>
                             <div class="col-md-6">
                                 <select id="order_type" title="Тип заявки, выбираемый при формировании ЭД" class="form-control" name="order_type" autofocus>
-                                    <option disabled selected value> -- Выберите значение -- </option>
+                                    <option {{ ($errors->has('order_type') && old('order_type') != null ) ? '' : 'selected' }} disabled> -- Выберите значение -- </option>
                                     @foreach($order_type as $ot)
-                                        <option value="{{ $ot->id }}">{{ $ot->order_type }}</option>
+                                        <option value="{{ $ot->id }}" {{ (old('order_type') == $ot->id ) ? 'selected' : '' }}>{{ $ot->name }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('order_type'))
@@ -57,7 +57,7 @@
                             </label>
                             <div class="col-md-6">
                                 <div class="input-group date" id="date_1">
-                                    <input id="order_date" type="test" class="form-control" name="order_date" value="{{ $date }}" disabled>
+                                    <input id="order_date" type="date" class="form-control" name="order_date" value="{{ $date }}" disabled>
                                 </div>
                                 @if ($errors->has('order_date'))
                                     <span class="help-block">
@@ -77,9 +77,9 @@
                             <div class="col-md-6">
                                 <input id="order_status" type="text" class="form-control" name="order_status" value="{{ old('order_status') }}" disabled>
                                 @if ($errors->has('order_status'))
-                                    <span class="help-block">
-                                <strong>{{ $errors->first('order_status') }}</strong>
-                            </span>
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('order_status') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
@@ -91,9 +91,9 @@
                             </label>
                             <div class="col-md-6">
                                 <select id="unit" title="Подразделения банка, где обслуживается клиент" class="form-control" name="unit" autofocus>
-                                    <option disabled selected value> -- Выберите значение -- </option>
+                                    <option {{ ($errors->has('unit') && old('unit') != null ) ? '' : 'selected' }} disabled> -- Выберите значение -- </option>
                                     @foreach($bank_units as $bu)
-                                        <option value="{{ $bu->id }}">{{ $bu->unit }}</option>
+                                        <option value="{{ $bu->id }}" {{ (old('unit') == $bu->id ) ? 'selected' : '' }}>{{ $bu->name }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('unit'))

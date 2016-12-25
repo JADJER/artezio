@@ -28,10 +28,12 @@ class OrderFormRequest extends FormRequest
             'unit' => 'required',
             'bank_name' => 'required',
             'bik' => 'required|numeric|regex:/([0-9]{9})/',
-            'account_no' => 'required|digits:20',
-            'bank_account_no' => 'required',
+            'account_no' => 'required|digits:20|regex:/([0-9]{5})([0-9АВСЕНКМРТХABCEHKMPTX]{1})([0-9]{14})/',
+            'bank_account_no' => 'required|regex:/([0-9]{5})([0-9АВСЕНКМРТХABCEHKMPTX]{1})([0-9]{14})/',
             'contact_name' => 'required',
             'contact_phone' => 'required',
+            'time_job_start' => '',
+            'time_job_stop' => '',
         ];
     }
 
@@ -46,11 +48,11 @@ class OrderFormRequest extends FormRequest
             'bik.numeric' => 'Введены недопустимые символы в поле БИК',
             'account_no.required' => 'Не указан счет для перечисления инкассированных средств',
             'account_no.digits' => 'Количество символов в поле Счет не соответствует норме (20)',
-            //'account_no.regex' => 'Номер расчетного счета содержит недопустимые символы',
+            'account_no.regex' => 'Номер расчетного счета содержит недопустимые символы',
            // 'account_no.required' => 'Ключ счета %n% не верен. Должен быть %s%.',
             'bank_account_no.required' => 'Не указан счет для перечисления инкассированных средств',
             //'bank_account_no.digits' => 'Количество символов в поле Счет не соответствует норме (20)',
-            //'bank_account_no.regex' => 'Номер расчетного счета содержит недопустимые символы',
+            'bank_account_no.regex' => 'Номер расчетного счета содержит недопустимые символы',
            // 'bank_account_no.required' => 'Ключ счета %n% не верен. Должен быть %s%.',
             'contact_name.required' => 'Не указано имя уполномоченного сотрудника организации клиента для решения вопросов организации инкассации',
             'contact_phone.required' => 'Не указан номер телефона уполномоченного сотрудника организации клиента для решения вопросов организации инкассации',

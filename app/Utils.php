@@ -14,13 +14,30 @@ use App\OrderStatus;
 class Utils
 {
 
-    public function getOrderType($arg)
+    public function setSign($check_arr)
     {
-        return OrderType::find($arg)->order_type;
+        foreach ($check_arr as $item)
+        {
+            if (empty($item))
+                return 2;
+        }
+
+
+        if (!$this->checkKey($check_arr))
+            return 2;
+
+        return 1;
     }
 
-    public function getOrderStatus($arg)
+    public function checkKey($check_arr)
     {
-        return OrderStatus::find($arg)->status;
+
+
+        //бик 044525225
+        // счет 30301810000006000001
+        //кор счет 30101810400000000225
+        return true;
+
     }
+
 }

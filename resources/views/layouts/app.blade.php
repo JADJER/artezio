@@ -34,7 +34,7 @@
                                 </li>
                             @else
                                 <li>
-                                    <a href="{{ url('/order/create') }}" role="button" class="btn">Оставить заявку</a>
+                                    <a href="{{ url('/order/create') }}" role="button" class="btn">Создать заявку</a>
                                 </li>
                             @endif
                                 <li class="dropdown">
@@ -46,9 +46,16 @@
                                         <li>
                                             <a href="{{ url('/profile') }}">Мой профиль</a>
                                         </li>
-                                        <li class="divider">
-
+                                        @if (!Auth::guest() && Auth::user()->isAdmin)
+                                        <li>
+                                            <a href="{{ url('/handbook') }}">Редактировать справочники</a>
                                         </li>
+                                        @endif
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="{{ url('/search') }}">Поиск</a>
+                                        </li>
+                                        <li class="divider"></li>
                                         <li>
                                             <a href="{{ url('/logout') }}">Выйти</a>
                                         </li>

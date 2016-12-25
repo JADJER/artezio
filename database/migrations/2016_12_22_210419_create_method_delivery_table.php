@@ -16,19 +16,20 @@ class CreateMethodDeliveryTable extends Migration
         Schema::create('method_delivery', function (Blueprint $table) {
             $table->integer('id')->unique();
             $table->primary('id');
-            $table->string('m_delivery');
+            $table->string('name');
+            $table->timestamps();
         });
         DB::table('method_delivery')->insert([
             'id' => '1',
-            'm_delivery' => 'По объявлению на взнос наличными',
+            'name' => 'По объявлению на взнос наличными',
         ]);
         DB::table('method_delivery')->insert([
             'id' => '2',
-            'm_delivery' => 'В инкассаторских сумках',
+            'name' => 'В инкассаторских сумках',
         ]);
         DB::table('method_delivery')->insert([
             'id' => '3',
-            'm_delivery' => 'Через службу инкассации',
+            'name' => 'Через службу инкассации',
         ]);
     }
 
