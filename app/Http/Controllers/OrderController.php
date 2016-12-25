@@ -154,7 +154,7 @@ class OrderController extends Controller
             $order = Order::find($id);
             $utils = new \App\Utils;
 
-            $order->order_status = $utils->getOrderStatus(3);
+            $order->order_status = 3;
             $order->isSigned = 1;
 
             $order->save();
