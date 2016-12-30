@@ -153,18 +153,20 @@ class OrderController extends Controller {
     }
 
     public function edit($id) {
-        $order = Order::find($id);
+        try {
+            $order = Order::findOrFail($id);
+            if ($order->isDeleted || $order->isSigned) {
+                return redirect('/');
+            } else {
+                $objects = Object::where('id', $id)->get();
+                $order_type = OrderType::all();
+                $bank_units = BankUnit::all();
 
-        if ($order->isDeleted || $order->isSigned) {
-            return redirect('/');
-        } else {
-            $objects = Object::where('id', $id)->get();
-            $order_type = OrderType::all();
-            $bank_units = BankUnit::all();
-
-            return view('layouts.orders.edit', compact('order', 'objects', 'order_type', 'bank_units'));
+                return view('layouts.orders.edit', compact('order', 'objects', 'order_type', 'bank_units'));
+            }
+        }catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return abort(404);
         }
-
     }
 
     public function delete($id) {
