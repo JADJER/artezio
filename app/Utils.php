@@ -18,13 +18,15 @@ class Utils
     {
         foreach ($check_arr as $item)
         {
-            if (empty($item))
+            if (empty($item)) {
                 return 2;
+            }
         }
 
 
-        if (!$this->checkKey($check_arr))
+        if (!$this->checkKey($check_arr)) {
             return 2;
+        }
 
         return 1;
     }

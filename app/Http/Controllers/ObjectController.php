@@ -10,10 +10,8 @@ use App\MethodDelivery;
 use Illuminate\Http\Request;
 use App\Object;
 
-class ObjectController extends Controller
-{
-    public function create($id)
-    {
+class ObjectController extends Controller {
+    public function create($id) {
         $method_delivery = MethodDelivery::all();
         $frequency_collector = FrequencyCollector::all();
         $collector_service = ColectorService::all();
@@ -21,15 +19,13 @@ class ObjectController extends Controller
         return view('layouts.orders.objects.create', compact('method_delivery', 'frequency_collector', 'id', 'collector_service', 'cash_code'));
     }
 
-    public function save(ObjectFormRequest $request, $id)
-    {
+    public function save(ObjectFormRequest $request, $id) {
 
         $object = new Object;
 
         $order_no =  $request->input('order_id');
 
-        if ($order_no == $id)
-        {
+        if ($order_no == $id) {
             $object->id = $order_no;
             $object->time_up = $request->input('time_up');
             $object->method_delivery = $request->input('method_delivery');
@@ -56,8 +52,7 @@ class ObjectController extends Controller
 
             $i = 1;
 
-            while(null !== $request->input('service_' . $i))
-            {
+            while(null !== $request->input('service_' . $i)) {
                 $service_arr[] = $request->input('service_' . $i++);
             }
 
@@ -66,13 +61,12 @@ class ObjectController extends Controller
             $object->save();
 
             return redirect('/order/edit/' . $order_no);
-        } else
+        } else {
             return redirect('/');
+        }
     }
 
-    public function update(ObjectFormRequest $request, $or, $ob)
-    {
-        $utils = new \App\Utils;
+    public function update(ObjectFormRequest $request, $or, $ob) {
         $object = Object::find($ob);
 
         $object->time_up = $request->input('time_up');
@@ -102,8 +96,7 @@ class ObjectController extends Controller
 
         $i = 1;
 
-        while(null !== $request->input('service_' . $i))
-        {
+        while(null !== $request->input('service_' . $i)) {
             $service_arr[] = $request->input('service_' . $i++);
         }
 
@@ -115,8 +108,7 @@ class ObjectController extends Controller
         return redirect('/order/edit/' . $or);
     }
 
-    public function edit($or, $ob)
-    {
+    public function edit($or, $ob) {
         $object = Object::find($ob);
 
         $method_delivery = MethodDelivery::all();
@@ -127,8 +119,7 @@ class ObjectController extends Controller
         return view('layouts.orders.objects.edit', compact('method_delivery', 'frequency_collector', 'or', 'ob', 'collector_service', 'cash_code', 'object'));
     }
 
-    public function delete($or, $ob)
-    {
+    public function delete($or, $ob) {
         Object::find($ob)->delete();
 
         return redirect('/order/edit/' . $or);

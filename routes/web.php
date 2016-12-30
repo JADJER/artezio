@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     if (Auth::check()) {
         return redirect('/orders');
-    } else
+    } else {
         return redirect('login');
+    }
 });
 
 Auth::routes();

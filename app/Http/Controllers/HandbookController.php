@@ -22,8 +22,9 @@ class HandbookController extends Controller {
     public function handbook() {
         if (!Auth::guest() && Auth::user()->isAdmin) {
             return view('layouts.profile.handbook.view');
-        } else
+        } else {
             return redirect('/');
+        }
     }
 
     public function edit($key) {
@@ -47,19 +48,21 @@ class HandbookController extends Controller {
                 case '' :
                     return redirect('/');
             }
-        } else
+        } else {
             return redirect('/');
+        }
     }
 
     public function create($key) {
         if (!Auth::guest() && Auth::user()->isAdmin) {
-            if (empty($key))
+            if (empty($key)) {
                 return redirect('/');
-            else
+            } else {
                 return view('layouts.profile.handbook.create', compact('key'));
-
-        } else
+            }
+        } else {
             return redirect('/');
+        }
     }
 
     public function edit_row($key, $id) {
@@ -83,8 +86,9 @@ class HandbookController extends Controller {
                 case '' :
                     return redirect('/');
             }
-        } else
+        } else {
             return redirect('/');
+        }
     }
 
     public function save(Request $request, $key) {
@@ -128,8 +132,9 @@ class HandbookController extends Controller {
                 case '' :
                     return redirect('/');
             }
-        } else
+        } else {
             return redirect('/');
+        }
     }
 
     public function delete($key, $id) {
@@ -163,8 +168,9 @@ class HandbookController extends Controller {
                 case '' :
                     return redirect('/');
             }
-        } else
+        } else {
             return redirect('/');
+        }
     }
 
     public function update(Request $request, $key, $id) {
@@ -208,7 +214,8 @@ class HandbookController extends Controller {
                 case '' :
                     return redirect('/');
             }
-        } else
+        } else {
             return redirect('/');
+        }
     }
 }

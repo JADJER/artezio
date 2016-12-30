@@ -14,15 +14,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class OrderController extends Controller
-{
-    public function __construct()
-    {
+class OrderController extends Controller {
+    public function __construct() {
         $this->middleware('auth');
     }
 
-    public function create()
-    {
+    public function create() {
         $order_type = OrderType::all();
         $bank_units = BankUnit::all();
         $order_no = "2-" . str_pad(Order::all()->max('id') + 1, 7, '0', STR_PAD_LEFT);
@@ -32,8 +29,7 @@ class OrderController extends Controller
         return view('layouts.orders.create', compact('order_type', 'bank_units', 'order_no', 'date'));
     }
 
-    public function save(OrderFormRequest $request)
-    {
+    public function save(OrderFormRequest $request) {
         $order = new Order;
         $utils = new \App\Utils;
 
@@ -87,8 +83,7 @@ class OrderController extends Controller
         return redirect('/object/create/' . $order_no);
     }
 
-    public function update(OrderFormRequest $request, $id)
-    {
+    public function update(OrderFormRequest $request, $id) {
         $utils = new \App\Utils;
         $order = Order::find($id);
 
@@ -139,14 +134,12 @@ class OrderController extends Controller
         return redirect('/orders');
     }
 
-    public function sign($id)
-    {
+    public function sign($id) {
         $order = Order::find($id);
 
-        if ($order->isDeleted || $order->isSigned)
+        if ($order->isDeleted || $order->isSigned) {
             return redirect('/');
-        else
-        {
+        } else {
             $order = Order::find($id);
             $utils = new \App\Utils;
 
@@ -159,14 +152,12 @@ class OrderController extends Controller
         }
     }
 
-    public function edit($id)
-    {
+    public function edit($id) {
         $order = Order::find($id);
 
-        if ($order->isDeleted || $order->isSigned)
+        if ($order->isDeleted || $order->isSigned) {
             return redirect('/');
-        else
-        {
+        } else {
             $objects = Object::where('id', $id)->get();
             $order_type = OrderType::all();
             $bank_units = BankUnit::all();
@@ -176,8 +167,7 @@ class OrderController extends Controller
 
     }
 
-    public function delete($id)
-    {
+    public function delete($id) {
         $order = Order::find($id);
 
         if ($order->isDeleted || $order->isSigned)
@@ -192,16 +182,15 @@ class OrderController extends Controller
         }
     }
 
-    public function view()
-    {
+    public function view() {
         $order_status = OrderStatus::All();
         $order_type = OrderType::All();
 
-        if (!Auth::guest() && Auth::user()->isAdmin)
+        if (!Auth::guest() && Auth::user()->isAdmin) {
             $orders = Order::All();
-        else
+        } else {
             $orders = Order::where('user_id', Auth::id())->get();
-
+        }
         return view('layouts.orders.view', compact('orders', 'order_status', 'order_type'));
     }
 
