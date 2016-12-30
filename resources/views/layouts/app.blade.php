@@ -37,6 +37,9 @@
                                     <a href="{{ url('/order/create') }}" role="button" class="btn">Создать заявку</a>
                                 </li>
                             @endif
+                                <li>
+                                    <a href="{{ url('/search') }}">Поиск</a>
+                                </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Привет, {{Auth::user()->name}} <strong class="caret"></strong></a>
                                     <ul class="dropdown-menu">
@@ -48,10 +51,6 @@
                                             <a href="{{ url('/handbook') }}">Редактировать справочники</a>
                                         </li>
                                         @endif
-                                        <li class="divider"></li>
-                                        <li>
-                                            <a href="{{ url('/search') }}">Поиск</a>
-                                        </li>
                                         <li class="divider"></li>
                                         <li>
                                             <a href="{{ url('/logout') }}">Выйти</a>
