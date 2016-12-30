@@ -31,7 +31,7 @@ class ObjectFormRequest extends FormRequest
             'count_cash' => 'required',
             'cash_code' => 'required',
             'head_object' => 'required',
-            'start_date' => 'required|date|after:now',
+            'start_date' => 'required|date|after:yesterday',
            // 'time_saturday_start' => '',
             //'time_saturday_stop' => '',
             //'time_sunday_start' => '',
