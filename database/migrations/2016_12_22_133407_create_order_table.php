@@ -104,6 +104,7 @@ class CreateOrderTable extends Migration
         DB::table('orders')->insert([
             'id' => '4',
             'user_id' => '2',
+            'isSigned' => '1',
             'order_status' => '3',
             'order_type' => '3',
             'unit' => '5',
@@ -124,6 +125,7 @@ class CreateOrderTable extends Migration
         DB::table('orders')->insert([
             'id' => '5',
             'user_id' => '2',
+            'isSigned' => '1',
             'order_status' => '3',
             'order_type' => '1',
             'unit' => '5',
