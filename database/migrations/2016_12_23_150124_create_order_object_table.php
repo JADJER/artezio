@@ -14,14 +14,17 @@ class CreateOrderObjectTable extends Migration
     public function up()
     {
         Schema::create('order_object', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('order_no');
+            $table->integer('id');
+            $table->foreign('id')->references('id')->on('orders');
             $table->time('time_up');
-            $table->string('method_delivery');
-            $table->string('frequency_collectors');
+            $table->integer('method_delivery');
+            $table->foreign('method_delivery')->references('id')->on('method_delivery');
+            $table->integer('frequency_collectors');
+            $table->foreign('frequency_collectors')->references('id')->on('frequency_collectors');
             $table->string('date_collectors');
             $table->integer('count_cash', false, true);
-            $table->string('cash_code', 3);
+            $table->integer('cash_code', 3);
+            $table->foreign('cash_code')->references('id')->on('cash_code');
             $table->string('head_object', 255);
             $table->date('start_date');
             $table->time('start_job_date')->nullable();
@@ -37,6 +40,7 @@ class CreateOrderObjectTable extends Migration
             $table->string('house_no', 20)->nullable();
             $table->string('housing_no', 20)->nullable();
             $table->string('services');
+            $table->foreign('services')->references('id')->on('collector_service');
             $table->timestamps();
         });
     }

@@ -15,15 +15,17 @@ class CreateOrderTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('object_count')->default(0);
             $table->boolean('isSigned')->default(0);
             $table->boolean('isDeleted')->default(0);
-            $table->string('order_status');
-            $table->string('order_type');
-            $table->string('order_no', 7)->unique();
-            $table->timestamp('order_date');
-            $table->string('unit');
+            $table->integer('order_status')->unsigned();
+            $table->foreign('order_status')->references('id')->on('order_status');
+            $table->integer('order_type')->unsigned();
+            $table->foreign('order_type')->references('id')->on('order_type');
+            $table->integer('unit')->unsigned();
+            $table->foreign('unit')->references('id')->on('bank_unit');
             $table->string('unn', 12)->nullable();
             $table->string('kpp', 9)->nullable();
             $table->string('org_name', 255)->nullable();
