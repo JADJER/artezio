@@ -25,7 +25,7 @@ class OrderController extends Controller
     {
         $order_type = OrderType::all();
         $bank_units = BankUnit::all();
-        $order_no = "2-" . str_pad(Order::all()->count() + 1, 7, '0', STR_PAD_LEFT);
+        $order_no = "2-" . str_pad(Order::all()->max('id') + 1, 7, '0', STR_PAD_LEFT);
 
         $date = date('d.m.Y');
 
@@ -37,15 +37,13 @@ class OrderController extends Controller
         $order = new Order;
         $utils = new \App\Utils;
 
-        $order_no = Order::all()->count() + 1;
+        $order_no = Order::all()->max('id') + 1;
 
+        $order->id = $order_no;
         $order->user_id = Auth::id();
         $order->order_status = $request->input('order_status');
         $order->order_type = $request->input('order_type');
 
-        $order->order_no = $order_no;
-
-        $order->order_date = date('d.m.Y');
         $order->unit = $request->input('unit');
 
         $unn = $request->input('unn');
@@ -97,8 +95,6 @@ class OrderController extends Controller
         $order->user_id = Auth::id();
         $order->order_status = $request->input('order_status');
         $order->order_type = $request->input('order_type');
-
-        $order->order_no = $id;
 
         $order->unit = $request->input('unit');
 
@@ -171,7 +167,7 @@ class OrderController extends Controller
             return redirect('/');
         else
         {
-            $objects = Object::where('order_no', $id)->get();
+            $objects = Object::where('id', $id)->get();
             $order_type = OrderType::all();
             $bank_units = BankUnit::all();
 

@@ -22,8 +22,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/profile', ['middleware' => 'auth', 'uses' => 'ProfileController@dashboard']);
-
 Route::get('/logout', 'ProfileController@logout');
 
 Route::get('/orders', ['middleware' => 'auth', 'uses' => 'OrderController@view']);

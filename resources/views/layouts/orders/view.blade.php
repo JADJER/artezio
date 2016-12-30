@@ -38,8 +38,8 @@
     @foreach($orders as $order)
         <tr>
             <td data-value="{{ $loop->index + 1 }}">{{ $loop->index + 1 }}</th>
-            <td>{{ "2-" . str_pad($order->order_no, 7, '0', STR_PAD_LEFT) }}</td>
-            <td data-dateformat="DD-MM-YYYY">{{ $order->order_date }}</td>
+            <td>{{ "2-" . str_pad($order->id, 7, '0', STR_PAD_LEFT) }}</td>
+            <td data-dateformat="DD-MM-YYYY">{{ $order->created_at }}</td>
             <td>
             @foreach($order_status as $os)
             @if ($os->id == $order->order_status)

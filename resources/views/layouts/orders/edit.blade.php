@@ -313,7 +313,7 @@
                                         <tr>
                                             <td>Обьект собственности {{ $loop->index + 1 }}</td>
                                             <td><a href="{{ url('/object/edit/' . $order->id . '/' . $object->id) }}">Редактировать</a></td>
-                                            <td><a href="{{ url('/object/delete/' . $object->id . '/' . $object->id) }}">Удалить</a></td>
+                                            <td><a href="{{ url('/object/delete/' . $order->id . '/' . $object->id) }}">Удалить</a></td>
                                         </tr>
                                     @endforeach
                                     </tbody>

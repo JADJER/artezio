@@ -43,9 +43,6 @@
                                         <li>
                                             <a href="{{ url('/orders') }}">Мои заявки</a>
                                         </li>
-                                        <li>
-                                            <a href="{{ url('/profile') }}">Мой профиль</a>
-                                        </li>
                                         @if (!Auth::guest() && Auth::user()->isAdmin)
                                         <li>
                                             <a href="{{ url('/handbook') }}">Редактировать справочники</a>

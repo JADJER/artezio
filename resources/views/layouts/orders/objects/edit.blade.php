@@ -552,7 +552,7 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <a href="{{ url('/object/delete/' . $object->id) }}" name="singlebutton" class="btn btn-primary">Удалить</a>
+                        <a href="{{ url('/object/delete/' . $or . '/' . $object->id) }}" name="singlebutton" class="btn btn-primary">Удалить</a>
                     </div>
                 </div>
                 <div class="col-md-8"></div>

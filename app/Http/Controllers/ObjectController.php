@@ -30,7 +30,7 @@ class ObjectController extends Controller
 
         if ($order_no == $id)
         {
-            $object->order_no = $order_no;
+            $object->id = $order_no;
             $object->time_up = $request->input('time_up');
             $object->method_delivery = $request->input('method_delivery');
             $object->frequency_collectors = $request->input('frequency_collectors');
@@ -129,7 +129,7 @@ class ObjectController extends Controller
 
     public function delete($or, $ob)
     {
-        $object = Object::find($ob)->delete();
+        Object::find($ob)->delete();
 
         return redirect('/order/edit/' . $or);
     }
