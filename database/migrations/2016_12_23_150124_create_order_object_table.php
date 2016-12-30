@@ -15,7 +15,7 @@ class CreateOrderObjectTable extends Migration
     {
         Schema::create('order_object', function (Blueprint $table) {
             $table->increments('id');
-            $table->increments('order_id');
+            $table->integer('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
             $table->time('time_up');
             $table->integer('method_delivery');
