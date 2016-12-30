@@ -27,7 +27,8 @@ Route::get('/logout', 'ProfileController@logout');
 Route::get('/orders', ['middleware' => 'auth', 'uses' => 'OrderController@view']);
 
 Route::get('/search', ['middleware' => 'auth', 'uses' => 'OrderController@search']);
-Route::post('/search', ['middleware' => 'auth', 'uses' => 'OrderController@search_result']);
+Route::get('/search_result', ['middleware' => 'auth', 'uses' => 'OrderController@search_result']);
+
 
 Route::get('/handbook', ['middleware' => 'auth', 'uses' => 'HandbookController@handbook']);
 Route::get('/handbook/edit/{key}', ['middleware' => 'auth', 'uses' => 'HandbookController@edit']);

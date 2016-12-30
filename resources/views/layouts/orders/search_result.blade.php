@@ -45,10 +45,10 @@
                                     Дата заявки
                                 </label>
                                 <select class="form-control" name="period" id="period" required>
-                                    <option disabled selected> -- Выберите значение -- </option>
-                                    <option value="1">За период</option>
-                                    <option value="2">За текущую неделю</option>
-                                    <option value="3">За текущий месяц</option>
+                                    <option disabled {{ ($search_period == null) ? 'selected' : '' }}> -- Выберите значение -- </option>
+                                    <option value="1" {{ ($search_period == 1) ? 'selected' : '' }}>За период</option>
+                                    <option value="2" {{ ($search_period == 2) ? 'selected' : '' }}>За текущую неделю</option>
+                                    <option value="3" {{ ($search_period == 3) ? 'selected' : '' }}>За текущий месяц</option>
                                 </select>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                 </label>
                                 <select class="form-control" id="status" name="status">
                                 @foreach($order_status as $ot)
-                                <option value="{{ $ot->id }}">{{ $ot->name }}</option>
+                                <option value="{{ $ot->id }}" {{ ($search_status == $ot->id) ? 'selected' : '' }}>{{ $ot->name }}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -71,20 +71,20 @@
                                 </label>
                                 <select class="form-control" id="type" name="type">
                                 @foreach($order_type as $os)
-                                    <option value="{{ $os->id }}">{{ $os->name }}</option>
+                                    <option value="{{ $os->id }}" {{ ($search_type == $os->id) ? 'selected' : '' }}>{{ $os->name }}</option>
                                 @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="date_container" class="row" style="display: none;">
+                <div id="date_container" class="row" style="{{ ($search_period == 1) ? '' : 'display: none;' }}">
                     <div class="col-md-6">
                         <div class="input-group date" id="date_1">
                             <label for="start_date">
                                 Период с
                             </label>
-                            <input id="start_date" title="ДД.ММ.ГГГГ" class="form-control" name="start_date" autofocus>
+                            <input id="start_date" title="ДД.ММ.ГГГГ" class="form-control" name="start_date" value="{{ $search_period_start }}" autofocus>
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -95,7 +95,7 @@
                             <label for="stop_date">
                                 Период по
                             </label>
-                            <input id="stop_date" title="ДД.ММ.ГГГГ" class="form-control" name="stop_date" autofocus>
+                            <input id="stop_date" title="ДД.ММ.ГГГГ" class="form-control" name="stop_date" value="{{ $search_period_stop }}" autofocus>
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>

@@ -238,10 +238,10 @@ class OrderController extends Controller
         } else if($search_period == 3) {
             $thisMonth = (string) Carbon::now()->month;
 
-            $result =  Order::whereMonth('created_at', $thisMonth)->where('order_status', $search_status)->where('order_type', $search_type)->get();
+            $result = Order::whereMonth('created_at', $thisMonth)->where('order_status', $search_status)->where('order_type', $search_type)->get();
         }
 
-        return view('layouts.orders.search', compact('order_type', 'order_status', 'result'));
+        return view('layouts.orders.search_result', compact('order_type', 'order_status', 'result', 'search_period', 'search_status', 'search_type', 'search_period_start', 'search_period_stop'));
     }
 
 }
