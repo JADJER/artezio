@@ -141,7 +141,6 @@ class OrderController extends Controller {
             return redirect('/');
         } else {
             $order = Order::find($id);
-            $utils = new \App\Utils;
 
             $order->order_status = 3;
             $order->isSigned = 1;
@@ -154,7 +153,7 @@ class OrderController extends Controller {
 
     public function edit($id) {
         try {
-            $order = Order::findOrFail($id);
+            $order = Order::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
             if ($order->isDeleted || $order->isSigned) {
                 return redirect('/');
             } else {
@@ -170,17 +169,21 @@ class OrderController extends Controller {
     }
 
     public function delete($id) {
-        $order = Order::find($id);
+        try {
+            $order = Order::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+            
+            if ($order->isDeleted || $order->isSigned)
+                return redirect('/');
+            else {
+                $order->order_status = 4;
+                $order->isDeleted = 1;
 
-        if ($order->isDeleted || $order->isSigned)
-            return redirect('/');
-        else {
-            $order->order_status = 4;
-            $order->isDeleted = 1;
+                $order->save();
 
-            $order->save();
-
-            return redirect('/');
+                return redirect('/');
+            }
+        }catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return abort(404);
         }
     }
 
