@@ -171,7 +171,7 @@ class OrderController extends Controller {
     public function delete($id) {
         try {
             $order = Order::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
-            
+
             if ($order->isDeleted || $order->isSigned)
                 return redirect('/');
             else {
