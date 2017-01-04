@@ -41,7 +41,6 @@ class CreateOrderObjectTable extends Migration
             $table->string('house_no', 20)->nullable();
             $table->string('housing_no', 20)->nullable();
             $table->string('services');
-            $table->foreign('services')->references('id')->on('collector_service');
             $table->timestamps();
         });
     }

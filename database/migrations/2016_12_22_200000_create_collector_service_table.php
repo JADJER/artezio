@@ -22,7 +22,6 @@ class CreateCollectorServiceTable extends Migration
         DB::table('collector_service')->insert([
             'id' => '1',
             'name' => 'Инкассация денежной наличности',
-            'created_at' => ''
         ]);
         DB::table('collector_service')->insert([
             'id' => '2',
