@@ -153,20 +153,44 @@ class OrderController extends Controller {
     }
 
     public function edit($id) {
-        try {
-            $order = Order::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
-            if ($order->isDeleted || $order->isSigned) {
-                return redirect('/');
-            } else {
-                $objects = Object::where('id', $id)->get();
-                $order_type = OrderType::all();
-                $bank_units = BankUnit::all();
+        if (!Auth::guest() && Auth::user()->isAdmin) {
+            try {
+                $order = Order::findOrFail($id);
 
-                return view('layouts.orders.edit', compact('order', 'objects', 'order_type', 'bank_units'));
+                if ($order->isDeleted || $order->isSigned) {
+                    return redirect('/');
+                } else {
+                    $objects = Object::where('id', $id)->get();
+                    $order_type = OrderType::all();
+                    $bank_units = BankUnit::all();
+                    $order_status = OrderStatus::all();
+
+                    return view('layouts.orders.edit', compact('order', 'objects', 'order_type', 'order_status', 'bank_units'));
+                }
+            }  catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+                return abort(404);
             }
-        }catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return abort(404);
+
+        } else if (Auth::check()) {
+            try {
+                $order = Order::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+                if ($order->isDeleted || $order->isSigned) {
+                    return redirect('/');
+                } else {
+                    $objects = Object::where('id', $id)->get();
+                    $order_type = OrderType::all();
+                    $bank_units = BankUnit::all();
+                    $order_status = OrderStatus::all();
+
+                    return view('layouts.orders.edit', compact('order', 'objects', 'order_type', 'order_status', 'bank_units'));
+                }
+            } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+                return abort(404);
+            }
         }
+
+
+
     }
 
     public function delete($id) {

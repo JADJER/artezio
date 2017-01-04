@@ -23,10 +23,10 @@ class ObjectController extends Controller {
 
         $object = new Object;
 
-        $order_no =  $request->input('order_id');
+        $order_no = $request->input('order_id');
 
         if ($order_no == $id) {
-            $object->id = $order_no;
+            $object->order_id = $order_no;
             $object->time_up = $request->input('time_up');
             $object->method_delivery = $request->input('method_delivery');
             $object->frequency_collectors = $request->input('frequency_collectors');

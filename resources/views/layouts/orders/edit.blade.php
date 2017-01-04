@@ -23,7 +23,7 @@
                             <div class="col-md-6">
                                 <select id="order_type" title="Тип заявки, выбираемый при формировании ЭД" class="form-control" name="order_type" autofocus>
                                     @foreach($order_type as $ot)
-                                    <option value="{{ $ot->id }}" {{ ($ot == $order->order_type) ? 'selected' : '' }} >{{ $ot->name }}</option>
+                                    <option value="{{ $ot->id }}" {{ ($ot->id == $order->order_type) ? 'selected' : '' }} >{{ $ot->name }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('order_type'))
@@ -40,7 +40,7 @@
                                 Номер заявки
                             </label>
                             <div class="col-md-6">
-                                <input id="order_no" type="text" class="form-control" name="order_no" value="{{ "2-" . str_pad($order->order_no, 7, '0', STR_PAD_LEFT) }}" disabled>
+                                <input id="order_no" type="text" class="form-control" name="order_no" value="{{ "2-" . str_pad($order->id, 7, '0', STR_PAD_LEFT) }}" disabled>
                                 @if ($errors->has('order_no'))
                                     <span class="help-block">
                                 <strong>{{ $errors->first('order_no') }}</strong>
@@ -56,7 +56,7 @@
                             </label>
                             <div class="col-md-6">
                                 <div class="input-group date" id="date_1">
-                                    <input id="order_date" type="date" class="form-control" name="order_date" value="{{ $order->order_date }}" disabled>
+                                    <input id="order_date" type="date" class="form-control" name="order_date" value="{{ $order->created_at }}" disabled>
                                 </div>
                                 @if ($errors->has('order_date'))
                                     <span class="help-block">
@@ -74,9 +74,13 @@
                                 Статус ЭД
                             </label>
                             <div class="col-md-6">
-                                <input id="order_status" type="text" class="form-control" name="order_status" value="{{ $order->order_status }}" disabled>
+                                @foreach($order_status as $os)
+                                    @if($order->order_status == $os->id )
+                                <input id="order_status" type="text" class="form-control" name="order_status" value="{{ $os->name }}" disabled>
+                                    @endif
+                                @endforeach
                                 @if ($errors->has('order_status'))
-                                    <span class="help-block">
+                                <span class="help-block">
                                 <strong>{{ $errors->first('order_status') }}</strong>
                             </span>
                                 @endif

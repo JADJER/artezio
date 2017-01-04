@@ -102,7 +102,7 @@
         <div class="panel-body">
             <form id="form_order" class="form-horizontal" enctype="multipart/form-data" role="form" method="POST" action="{{ url('/object/save/' . $id) }}">
                 {{ csrf_field() }}
-                <input type="hidden"  name="order_id" value="{{ $id }}">
+                <input type="hidden" name="order_id" value="{{ $id }}">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group{{ $errors->has('time_up') ? ' has-error' : '' }}">
