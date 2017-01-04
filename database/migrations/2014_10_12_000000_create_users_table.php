@@ -22,18 +22,6 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-        DB::table('users')->insert([
-            'name' => 'root',
-            'email' => 'root@site.com',
-            'password' => '$2y$10$NWhYPcSLWGrOHukYPSTNN.27Qm91Q0CNou4yfZS7PkcCXUXmR7.du',   //RootPassword1
-            'isAdmin' => '1',
-        ]);
-        DB::table('users')->insert([
-            'name' => 'user',
-            'email' => 'user@site.com',
-            'password' => '$2y$10$RJ/dM3vNQeJWrCqmPNu2DeNOSP.ntmWQAA0ox7lH5UIvieZQbHBW2',   //password1
-            'isAdmin' => '0',
-        ]);
     }
 
     /**

@@ -19,30 +19,6 @@ class CreateFrequencyCollectorsTable extends Migration
              $table->string('name');
              $table->timestamps();
          });
-        DB::table('frequency_collectors')->insert([
-            'id' => '1',
-            'name' => 'Ежедневно',
-        ]);
-        DB::table('frequency_collectors')->insert([
-            'id' => '2',
-            'name' => 'Рабочие дни',
-        ]);
-        DB::table('frequency_collectors')->insert([
-            'id' => '3',
-            'name' => 'Через день',
-        ]);
-        DB::table('frequency_collectors')->insert([
-            'id' => '4',
-            'name' => 'День недели',
-        ]);
-        DB::table('frequency_collectors')->insert([
-            'id' => '5',
-            'name' => 'По заявке',
-        ]);
-        DB::table('frequency_collectors')->insert([
-            'id' => '6',
-            'name' => 'По звонку',
-        ]);
     }
 
     /**

@@ -19,14 +19,6 @@ class CreateCashCodeTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
-        DB::table('cash_code')->insert([
-            'id' => '840',
-            'name' => 'USD',
-        ]);
-        DB::table('cash_code')->insert([
-            'id' => '974',
-            'name' => 'BYR',
-        ]);
     }
 
     /**

@@ -19,18 +19,6 @@ class CreateMethodDeliveryTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
-        DB::table('method_delivery')->insert([
-            'id' => '1',
-            'name' => 'По объявлению на взнос наличными',
-        ]);
-        DB::table('method_delivery')->insert([
-            'id' => '2',
-            'name' => 'В инкассаторских сумках',
-        ]);
-        DB::table('method_delivery')->insert([
-            'id' => '3',
-            'name' => 'Через службу инкассации',
-        ]);
     }
 
     /**
