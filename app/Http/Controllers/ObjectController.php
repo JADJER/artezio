@@ -8,7 +8,9 @@ use App\FrequencyCollector;
 use App\Http\Requests\ObjectFormRequest;
 use App\MethodDelivery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Object;
+use App\Order;
 
 class ObjectController extends Controller {
     public function create($id) {
@@ -109,14 +111,58 @@ class ObjectController extends Controller {
     }
 
     public function edit($or, $ob) {
-        $object = Object::find($ob);
+        if (!Auth::guest() && Auth::user()->isAdmin) {
+            try {
+                $order = Order::findOrFail($or);
 
-        $method_delivery = MethodDelivery::all();
-        $frequency_collector = FrequencyCollector::all();
-        $collector_service = ColectorService::all();
-        $cash_code = CashCode::All();
+                if ($order->isDeleted || $order->isSigned) {
+                    return redirect('/');
+                } else {
+                    $object = Object::findOrFail($ob);
 
-        return view('layouts.orders.objects.edit', compact('method_delivery', 'frequency_collector', 'or', 'ob', 'collector_service', 'cash_code', 'object'));
+                    $method_delivery = MethodDelivery::all();
+                    $frequency_collector = FrequencyCollector::all();
+                    $collector_service = ColectorService::all();
+                    $cash_code = CashCode::All();
+
+                    return view('layouts.orders.objects.edit', compact('method_delivery', 'frequency_collector', 'or', 'ob', 'collector_service', 'cash_code', 'object'));
+                }
+            } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+                return abort(404);
+            }
+        } else if (Auth::check()) {
+            try {
+                $order = Order::where('id', $or)->where('user_id', Auth::id())->firstOrFail();
+                if ($order->isDeleted || $order->isSigned) {
+                    return redirect('/');
+                } else {
+                    $object = Object::where('id', $ob)->where('order_id', $or)->firstOrFail();
+
+                    $method_delivery = MethodDelivery::all();
+                    $frequency_collector = FrequencyCollector::all();
+                    $collector_service = ColectorService::all();
+                    $cash_code = CashCode::All();
+
+                    return view('layouts.orders.objects.edit', compact('method_delivery', 'frequency_collector', 'or', 'ob', 'collector_service', 'cash_code', 'object'));
+                }
+            } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+                return abort(404);
+            }
+        } else {
+            return redirect('/');
+        }
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     public function delete($or, $ob) {
@@ -124,4 +170,5 @@ class ObjectController extends Controller {
 
         return redirect('/order/edit/' . $or);
     }
+
 }

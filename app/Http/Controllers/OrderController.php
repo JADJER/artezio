@@ -160,7 +160,7 @@ class OrderController extends Controller {
                 if ($order->isDeleted || $order->isSigned) {
                     return redirect('/');
                 } else {
-                    $objects = Object::where('id', $id)->get();
+                    $objects = Object::where('order_id', $id)->get();
                     $order_type = OrderType::all();
                     $bank_units = BankUnit::all();
                     $order_status = OrderStatus::all();
@@ -177,7 +177,7 @@ class OrderController extends Controller {
                 if ($order->isDeleted || $order->isSigned) {
                     return redirect('/');
                 } else {
-                    $objects = Object::where('id', $id)->get();
+                    $objects = Object::where('order_id', $id)->get();
                     $order_type = OrderType::all();
                     $bank_units = BankUnit::all();
                     $order_status = OrderStatus::all();
@@ -188,9 +188,6 @@ class OrderController extends Controller {
                 return abort(404);
             }
         }
-
-
-
     }
 
     public function delete($id) {
