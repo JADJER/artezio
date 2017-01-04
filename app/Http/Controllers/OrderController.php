@@ -33,7 +33,8 @@ class OrderController extends Controller {
         $order = new Order;
         $utils = new \App\Utils;
 
-        $order_no = Order::all()->max('id') + 1;
+        $max_id = Order::all()->max('id');
+        $order_no = $max_id + 1;
 
         $order->id = $order_no;
         $order->user_id = Auth::id();
