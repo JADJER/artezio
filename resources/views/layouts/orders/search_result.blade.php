@@ -143,7 +143,7 @@
                     @endforeach
                 </td>
                 <td title="Подтисать"><a href="{{ ($r->order_status == 2) ? '' : url('/order/sign/' . $r->id) }}" class="btn btn-success"@if($r->isSigned || $r->isDeleted || $r->order_status == 2) disabled @endif></a></td>
-                <td title="Редактировать"><a href="{{ url('/order/edit/' . $r->id) }}" class="btn btn-warning"@if($r->isSigned || $r->isDeleted) disabled @endif></a></td>
+                <td title="Редактировать"><a href="{{ url('/order/edit/' . $r->id) }}" class="btn btn-warning"@if($r->isDeleted) disabled @endif></a></td>
                 <td title="Удалить"><a href="{{ url('/order/delete/' . $r->id) }}" class="btn btn-danger"@if($r->isSigned || $r->isDeleted) disabled @endif></a></td>
             </tr>
         @endforeach

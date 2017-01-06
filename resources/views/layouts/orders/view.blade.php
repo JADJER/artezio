@@ -55,7 +55,7 @@
             @endforeach
             </td>
             <td title="Подтисать"><a href="{{ ($order->order_status == 2) ? '' : url('/order/sign/' . $order->id) }}" class="btn btn-success"@if($order->isSigned || $order->isDeleted || $order->order_status == 2) disabled @endif></a></td>
-            <td title="Редактировать"><a href="{{ url('/order/edit/' . $order->id) }}" class="btn btn-warning"@if($order->isSigned || $order->isDeleted) disabled @endif></a></td>
+            <td title="Редактировать"><a href="{{ url('/order/edit/' . $order->id) }}" class="btn btn-warning"@if($order->isDeleted) disabled @endif></a></td>
             <td title="Удалить"><a href="{{ url('/order/delete/' . $order->id) }}" class="btn btn-danger"@if($order->isSigned || $order->isDeleted) disabled @endif></a></td>
         </tr>
     @endforeach

@@ -336,23 +336,23 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <a href="{{ url('/order/delete/' . $order->id) }}" name="singlebutton" class="btn btn-primary">Удалить</a>
+                        <a href="{{ $order->isSigned ? 'javascript: void(0)' : url('/order/delete/' . $order->id) }}" name="singlebutton" class="btn btn-primary" {{ $order->isSigned ? 'disabled' : '' }}>Удалить</a>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        <a id="singlebutton" href="{{ url('/order/sign/' . $order->id) }}" name="singlebutton" class="btn btn-primary">Подписать</a>
+                        <a id="singlebutton" href="{{ $order->isSigned ? 'javascript: void(0)' : url('/order/sign/' . $order->id) }}" name="singlebutton" class="btn btn-primary" {{ $order->isSigned ? 'disabled' : '' }}>Подписать</a>
                     </div>
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        <button id="singlebutton" form="form_order" formaction="{{ url('/order/update/' . $order->id) }}" name="singlebutton" class="btn btn-primary">Сохранить</button>
+                        <button id="singlebutton" form="form_order" formaction="{{ $order->isSigned ? '' : url('/order/update/' . $order->id) }}" name="singlebutton" class="btn btn-primary" {{ $order->isSigned ? 'disabled' : '' }}>Сохранить</button>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <a href="{{ ($count == 50) ? '#' : url('/object/create/' . $order->id) }}" name="singlebutton" class="btn btn-primary" {{ ($count == 50) ? 'disabled' : '' }} >Добавить обьект собственности</a>
+                        <a href="{{ ($count == 50 || $order->isSigned) ? 'javascript: void(0)' : url('/object/create/' . $order->id) }}" name="singlebutton" class="btn btn-primary" {{ ($count == 50 || $order->isSigned) ? 'disabled' : '' }} >Добавить обьект собственности</a>
                     </div>
                 </div>
                 <div class="col-md-2">

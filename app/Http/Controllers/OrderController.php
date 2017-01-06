@@ -87,7 +87,8 @@ class OrderController extends Controller {
     public function update(OrderFormRequest $request, $id) {
         $utils = new \App\Utils;
         $order = Order::find($id);
-
+        if ($order->isSigned)
+            return redirect('/');
         $order->user_id = Auth::id();
         $order->order_status = $request->input('order_status');
         $order->order_type = $request->input('order_type');
@@ -172,7 +173,7 @@ class OrderController extends Controller {
             return abort(404);
         }
 
-        if ($order->isDeleted || $order->isSigned) {
+        if ($order->isDeleted) {
             return redirect('/');
         } else {
             $objects = Object::where('order_id', $id)->get();
