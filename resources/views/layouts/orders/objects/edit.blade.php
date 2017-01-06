@@ -245,7 +245,7 @@
                             </label>
                             <div class="col-md-6">
                                 <div class="input-group date" id="date_1">
-                                    <input id="start_date" title="ДД.ММ.ГГГГ" class="form-control" name="start_date" value="{{ ($errors->has('start_date')) ? old('start_date') : $object->start_date }}" autofocus>
+                                    <input id="start_date" title="ДД.ММ.ГГГГ" class="form-control" name="start_date" value="{{ ($errors->has('start_date')) ? old('start_date') : date_create($object->start_date)->format('d.m.Y')       }}" autofocus>
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>

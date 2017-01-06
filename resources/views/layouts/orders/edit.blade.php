@@ -56,7 +56,7 @@
                             </label>
                             <div class="col-md-6">
                                 <div class="input-group date" id="date_1">
-                                    <input id="order_date" type="date" class="form-control" name="order_date" value="{{ $order->created_at }}" disabled>
+                                    <input id="order_date" type="date" class="form-control" name="order_date" value="{{ $order->created_at->format('d.m.Y') }}" disabled>
                                 </div>
                                 @if ($errors->has('order_date'))
                                     <span class="help-block">

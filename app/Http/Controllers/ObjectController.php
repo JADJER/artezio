@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Object;
 use App\Order;
+use Carbon\Carbon;
 
 class ObjectController extends Controller {
     public function create($id) {
@@ -36,13 +37,32 @@ class ObjectController extends Controller {
             $object->count_cash = $request->input('count_cash');
             $object->cash_code = $request->input('cash_code');
             $object->head_object = $request->input('head_object');
-            $object->start_date = $request->input('start_date');
-            $object->start_job_date = $request->input('time_job_start');
-            $object->stop_job_date = $request->input('time_job_stop');
-            $object->start_saturday_date = $request->input('time_saturday_start');
-            $object->stop_saturday_date = $request->input('time_saturday_stop');
-            $object->start_sunday_date = $request->input('time_sunday_start');
-            $object->stop_sunday_date = $request->input('time_sunday_stop');
+            $object->start_date = Carbon::createFromFormat('d.m.Y', $request->input('start_date'));
+
+            if ($request->input('time_job_start') != null) {
+                $object->start_job_date = $request->input('time_job_start');
+            }
+
+            if ($request->input('time_job_stop') != null) {
+                $object->stop_job_date = $request->input('time_job_stop');
+            }
+
+            if ($request->input('time_saturday_start') != null) {
+                $object->start_saturday_date = $request->input('time_saturday_start');
+            }
+
+            if ($request->input('time_saturday_stop') != null) {
+                $object->stop_saturday_date = $request->input('time_saturday_stop');
+            }
+
+            if ($request->input('time_sunday_start') != null) {
+                $object->start_sunday_date = $request->input('time_sunday_start');
+            }
+
+            if ($request->input('time_sunday_stop') != null) {
+                $object->stop_sunday_date = $request->input('time_sunday_stop');
+            }
+
             $object->address_type = $request->input('address_type');
             $object->type_settlement = $request->input('type_settlement');
             $object->name_settlement = $request->input('name_settlement');
@@ -78,13 +98,32 @@ class ObjectController extends Controller {
         $object->count_cash = $request->input('count_cash');
         $object->cash_code = $request->input('cash_code');
         $object->head_object = $request->input('head_object');
-        $object->start_date = $request->input('start_date');
-        $object->start_job_date = $request->input('time_job_start');
-        $object->stop_job_date = $request->input('time_job_stop');
-        $object->start_saturday_date = $request->input('time_saturday_start');
-        $object->stop_saturday_date = $request->input('time_saturday_stop');
-        $object->start_sunday_date = $request->input('time_sunday_start');
-        $object->stop_sunday_date = $request->input('time_sunday_stop');
+        $object->start_date = Carbon::createFromFormat('d.m.Y', $request->input('start_date'));
+
+        if ($request->input('time_job_start') != null) {
+            $object->start_job_date = $request->input('time_job_start');
+        }
+
+        if ($request->input('time_job_stop') != null) {
+            $object->stop_job_date = $request->input('time_job_stop');
+        }
+
+        if ($request->input('time_saturday_start') != null) {
+            $object->start_saturday_date = $request->input('time_saturday_start');
+        }
+
+        if ($request->input('time_saturday_stop') != null) {
+            $object->stop_saturday_date = $request->input('time_saturday_stop');
+        }
+
+        if ($request->input('time_sunday_start') != null) {
+            $object->start_sunday_date = $request->input('time_sunday_start');
+        }
+
+        if ($request->input('time_sunday_stop') != null) {
+            $object->stop_sunday_date = $request->input('time_sunday_stop');
+        }
+
         $object->address_type = $request->input('address_type');
         $object->type_settlement = $request->input('type_settlement');
         $object->name_settlement = $request->input('name_settlement');
