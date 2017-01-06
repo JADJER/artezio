@@ -96,42 +96,28 @@ class HandbookController extends Controller {
             switch($key) {
                 case 'collector_service' :
                     $handbook = new ColectorService;
-                    $handbook->id = $request->input('id');
-                    $handbook->name = $request->input('name');
-                    $handbook->save();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case 'order_type' :
                     $handbook = new OrderType;
-                    $handbook->id = $request->input('id');
-                    $handbook->name = $request->input('name');
-                    $handbook->save();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case 'method_delivery' :
                     $handbook = new MethodDelivery;
-                    $handbook->id = $request->input('id');
-                    $handbook->name = $request->input('name');
-                    $handbook->save();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case 'frequency_collectors' :
                     $handbook = new FrequencyCollector;
-                    $handbook->id = $request->input('id');
-                    $handbook->name = $request->input('name');
-                    $handbook->save();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case 'cash_code' :
                     $handbook = new CashCode;
-                    $handbook->id = $request->input('id');
-                    $handbook->name = $request->input('name');
-                    $handbook->save();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case '' :
                     return redirect('/');
+                    break;
             }
+
+            $handbook->name = $request->input('name');
+            $handbook->save();
+            return redirect('/handbook/edit/' . $key);
+
         } else {
             return redirect('/');
         }
@@ -142,32 +128,26 @@ class HandbookController extends Controller {
             switch($key) {
                 case 'collector_service' :
                     $handbook = ColectorService::find($id);
-                    $handbook->delete();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case 'order_type' :
                     $handbook = OrderType::find($id);
-                    $handbook->delete();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case 'method_delivery' :
                     $handbook = MethodDelivery::find($id);
-                    $handbook->delete();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case 'frequency_collectors' :
                     $handbook = FrequencyCollector::find($id);
-                    $handbook->delete();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case 'cash_code' :
                     $handbook = CashCode::find($id);
-                    $handbook->delete();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case '' :
                     return redirect('/');
             }
+
+            $handbook->delete();
+            return redirect('/handbook/edit/' . $key);
+
         } else {
             return redirect('/');
         }
@@ -178,42 +158,27 @@ class HandbookController extends Controller {
             switch($key) {
                 case 'collector_service' :
                     $handbook = ColectorService::find($id);
-                    $handbook->id = $request->input('id');
-                    $handbook->name = $request->input('name');
-                    $handbook->save();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case 'order_type' :
                     $handbook = OrderType::find($id);
-                    $handbook->id = $request->input('id');
-                    $handbook->name = $request->input('name');
-                    $handbook->save();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case 'method_delivery' :
                     $handbook = MethodDelivery::find($id);
-                    $handbook->id = $request->input('id');
-                    $handbook->name = $request->input('name');
-                    $handbook->save();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case 'frequency_collectors' :
                     $handbook = FrequencyCollector::find($id);
-                    $handbook->id = $request->input('id');
-                    $handbook->name = $request->input('name');
-                    $handbook->save();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case 'cash_code' :
                     $handbook = CashCode::find($id);
-                    $handbook->id = $request->input('id');
-                    $handbook->name = $request->input('name');
-                    $handbook->save();
-                    return redirect('/handbook/edit/' . $key);
-
+                    break;
                 case '' :
                     return redirect('/');
             }
+
+            $handbook->name = $request->input('name');
+            $handbook->save();
+            return redirect('/handbook/edit/' . $key);
+
         } else {
             return redirect('/');
         }

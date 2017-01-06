@@ -14,8 +14,7 @@ class CreateCashCodeTable extends Migration
     public function up()
     {
         Schema::create('cash_code', function (Blueprint $table) {
-            $table->integer('id')->unique();
-            $table->primary('id');
+            $table->increments('id');
             $table->string('name');
             $table->timestamps();
         });

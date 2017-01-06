@@ -10,6 +10,14 @@
 
 @section('content')
     <table class="table table-bordered table-striped sortable">
+        <thead>
+        <tr>
+            <td>id</td>
+            <td>Наименование</td>
+            <td></td>
+            <td></td>
+        </tr>
+        </thead>
         <tbody>
         @foreach($handbook as $hb)
         <tr>

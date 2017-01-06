@@ -14,8 +14,7 @@ class CreateBankUnitTable extends Migration
     public function up()
     {
         Schema::create('bank_unit', function (Blueprint $table) {
-            $table->integer('id')->unique();
-            $table->primary('id');
+            $table->increments('id');
             $table->string('name');
             $table->timestamps();
         });

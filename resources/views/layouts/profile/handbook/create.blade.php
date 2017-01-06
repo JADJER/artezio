@@ -12,10 +12,16 @@
     <form id="edit_row" method="POST">
         {{ csrf_field() }}
         <table class="table table-bordered table-striped sortable">
+            <thead>
+            <tr>
+                <td>Наименование</td>
+                <td></td>
+            </tr>
+            </thead>
             <tbody>
             <tr>
-                <td><input type="text" name="id"></td>
                 <td><input type="text" name="name"></td>
+                <td></td>
             </tr>
             <tr>
                 <td><a href="/handbook/edit/{{ $key }}" class="btn btn-primary">Отмена</a></td>

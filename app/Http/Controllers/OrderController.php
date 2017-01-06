@@ -36,7 +36,6 @@ class OrderController extends Controller {
 
         $order_count = Order::with('id')->max('id');
 
-        $order->id = $order_count + 1;
         $order->user_id = Auth::id();
         $order->order_status = $request->input('order_status');
         $order->order_type = $request->input('order_type');

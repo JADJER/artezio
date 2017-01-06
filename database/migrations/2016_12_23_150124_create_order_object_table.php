@@ -15,16 +15,16 @@ class CreateOrderObjectTable extends Migration
     {
         Schema::create('order_object', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id');
+            $table->integer('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders');
             $table->time('time_up');
-            $table->integer('method_delivery');
+            $table->integer('method_delivery')->unsigned();
             $table->foreign('method_delivery')->references('id')->on('method_delivery');
-            $table->integer('frequency_collectors');
+            $table->integer('frequency_collectors')->unsigned();
             $table->foreign('frequency_collectors')->references('id')->on('frequency_collectors');
             $table->integer('date_collectors');
             $table->integer('count_cash');
-            $table->integer('cash_code');
+            $table->integer('cash_code')->unsigned();
             $table->foreign('cash_code')->references('id')->on('cash_code');
             $table->string('head_object', 255);
             $table->date('start_date');

@@ -12,9 +12,15 @@
     <form id="edit_row" method="POST">
         {{ csrf_field() }}
         <table class="table table-bordered table-striped sortable">
+            <thead>
+            <tr>
+                <td>id</td>
+                <td>Наименование</td>
+            </tr>
+            </thead>
             <tbody>
             <tr>
-                <td><input type="text" name="id" value="{{ $handbook->id }}"></td>
+                <td><input type="text" name="id" value="{{ $handbook->id }}" disabled></td>
                 <td><input type="text" name="name" value="{{ $handbook->name }}"></td>
             </tr>
             <tr>
