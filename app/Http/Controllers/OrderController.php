@@ -81,7 +81,7 @@ class OrderController extends Controller {
 
         $order->save();
 
-        return redirect('/object/create/' . $order_no);
+        return redirect('/object/create/' . $order_count);
     }
 
     public function update(OrderFormRequest $request, $id) {

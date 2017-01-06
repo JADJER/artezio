@@ -189,7 +189,20 @@ class ObjectController extends Controller {
     }
 
     public function delete($or, $ob) {
-        Object::find($ob)->delete();
+
+        try {
+
+            $order = Order::where('id', $or)->where('user_id', Auth::id())->firstOrFail();
+
+            if ($order->isDeleted || $order->isSigned) {
+                return redirect('/');
+            } else {
+                Object::findOrFail($ob)->delete();;
+            }
+
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return abort(404);
+        }
 
         return redirect('/order/edit/' . $or);
     }
