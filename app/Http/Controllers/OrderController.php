@@ -136,7 +136,12 @@ class OrderController extends Controller {
     }
 
     public function sign($id) {
-        $order = Order::find($id);
+
+        try {
+            $order = Order::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        }  catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return abort(404);
+        }
 
         if ($order->isDeleted || $order->isSigned) {
             return redirect('/');
@@ -182,19 +187,19 @@ class OrderController extends Controller {
     public function delete($id) {
         try {
             $order = Order::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
-
-            if ($order->isDeleted || $order->isSigned)
-                return redirect('/');
-            else {
-                $order->order_status = 4;
-                $order->isDeleted = 1;
-
-                $order->save();
-
-                return redirect('/');
-            }
-        }catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        }  catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return abort(404);
+        }
+
+        if ($order->isDeleted || $order->isSigned)
+            return redirect('/');
+        else {
+            $order->order_status = 4;
+            $order->isDeleted = 1;
+
+            $order->save();
+
+            return redirect('/');
         }
     }
 
@@ -234,7 +239,6 @@ class OrderController extends Controller {
                 Carbon::parse($search_period_stop),
             ])->where('order_status', $search_status)->where('order_type', $search_type)->get();
 
-//            return Order::whereBetween('created_at', [$search_period_start, $search_period_stop])->where('order_status', $search_status)->where('order_type', $search_type)->get();
         } else if($search_period == 2) {
             $result = Order::whereBetween('created_at', [
                 Carbon::now()->startOfWeek(),
