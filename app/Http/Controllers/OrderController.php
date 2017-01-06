@@ -153,40 +153,29 @@ class OrderController extends Controller {
     }
 
     public function edit($id) {
-        if (!Auth::guest() && Auth::user()->isAdmin) {
-            try {
+        try {
+
+            if (!Auth::guest() && Auth::user()->isAdmin) {
                 $order = Order::findOrFail($id);
-
-                if ($order->isDeleted || $order->isSigned) {
-                    return redirect('/');
-                } else {
-                    $objects = Object::where('order_id', $id)->get();
-                    $order_type = OrderType::all();
-                    $bank_units = BankUnit::all();
-                    $order_status = OrderStatus::all();
-
-                    return view('layouts.orders.edit', compact('order', 'objects', 'order_type', 'order_status', 'bank_units'));
-                }
-            }  catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-                return abort(404);
-            }
-
-        } else if (Auth::check()) {
-            try {
+            } else if (Auth::check()) {
                 $order = Order::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
-                if ($order->isDeleted || $order->isSigned) {
-                    return redirect('/');
-                } else {
-                    $objects = Object::where('order_id', $id)->get();
-                    $order_type = OrderType::all();
-                    $bank_units = BankUnit::all();
-                    $order_status = OrderStatus::all();
-
-                    return view('layouts.orders.edit', compact('order', 'objects', 'order_type', 'order_status', 'bank_units'));
-                }
-            } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-                return abort(404);
+            } else {
+                return redirect('/');
             }
+
+        }  catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return abort(404);
+        }
+
+        if ($order->isDeleted || $order->isSigned) {
+            return redirect('/');
+        } else {
+            $objects = Object::where('order_id', $id)->get();
+            $order_type = OrderType::all();
+            $bank_units = BankUnit::all();
+            $order_status = OrderStatus::all();
+
+            return view('layouts.orders.edit', compact('order', 'objects', 'order_type', 'order_status', 'bank_units'));
         }
     }
 
