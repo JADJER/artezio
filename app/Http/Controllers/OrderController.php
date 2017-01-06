@@ -22,7 +22,8 @@ class OrderController extends Controller {
     public function create() {
         $order_type = OrderType::all();
         $bank_units = BankUnit::all();
-        $order_no = "2-" . str_pad(Order::all()->max('id') + 1, 7, '0', STR_PAD_LEFT);
+        $order_count = Order::with('id')->max('id');
+        $order_no = "2-" . str_pad($order_count + 1, 7, '0', STR_PAD_LEFT);
 
         $date = date('d.m.Y');
 
@@ -33,10 +34,9 @@ class OrderController extends Controller {
         $order = new Order;
         $utils = new \App\Utils;
 
-        $max_id = Order::all()->max('id');
-        $order_no = $max_id + 1;
+        $order_count = Order::with('id')->max('id');
 
-        $order->id = $order_no;
+        $order->id = $order_count + 1;
         $order->user_id = Auth::id();
         $order->order_status = $request->input('order_status');
         $order->order_type = $request->input('order_type');
